@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../auth.form.scss";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+
 const Login = () => {
   const { loading, handleLogin } = useAuth();
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     email: "",
@@ -17,6 +19,7 @@ const Login = () => {
   const onHandleSubmit = async (e) => {
     e.preventDefault();
     await handleLogin(form);
+    navigate("/")
   };
 
   if (loading) {
