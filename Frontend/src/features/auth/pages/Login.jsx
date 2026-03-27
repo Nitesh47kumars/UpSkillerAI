@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "../auth.form.scss";
 import { Link } from "react-router";
+import { useAuth } from "../hooks/useAuth";
 const Login = () => {
+  const { loading, handleLogin } = useAuth();
 
-    const onHandleSubmit = (e) =>{
-        e.preventDefault()
-    }
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onHandleChange = (e) => {
+    return setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const onHandleSubmit = async (e) => {
+    e.preventDefault();
+    await handleLogin(form);
+  };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <main>
       <div className="form-container">
         <h1>Login</h1>
-        <form>
+        <form onSubmit={onHandleSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
+              value={form.email}
+              onChange={onHandleChange}
               type="email"
               id="email"
               name="email"
@@ -23,6 +41,8 @@ const Login = () => {
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
+              value={form.password}
+              onChange={onHandleChange}
               type="password"
               id="password"
               name="password"
@@ -30,9 +50,12 @@ const Login = () => {
             />
           </div>
 
-          <button onClick={onHandleSubmit} className="button primary-button">Login</button>
+          <button className="button primary-button">Login</button>
         </form>
-        <p>Don't have any Account, Create new one <Link to={"/register"}>Register</Link></p>
+        <p>
+          Don't have any Account, Create new one{" "}
+          <Link to={"/register"}>Register</Link>
+        </p>
       </div>
     </main>
   );
