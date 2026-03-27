@@ -1,37 +1,63 @@
-import React from "react";
-import { Link} from "react-router";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
+  const { loading, handleRegister } = useAuth();
 
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    userName: "",
+    email: "",
+    password: "",
+  });
+
+  const onHandleChange = () => {
+    return setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  const onHandleSubmit = async (e) => {
+    e.preventDefault();
+    await handleRegister(form);
+    navigate("/");
+  };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <main>
       <div className="form-container">
         <h1>Register</h1>
-        <form>
+        <form onSubmit={onHandleSubmit}>
           <div className="input-group">
-            <label htmlFor="UserName">UserName</label>
+            <label htmlFor="userName">UserName</label>
             <input
-              type="UserName"
-              id="UserName"
-              name="UserName"
+              value={form.userName}
+              onChange={onHandleChange}
+              type="userName"
+              id="userName"
+              name="userName"
               placeholder="Enter UserName"
             />
           </div>
           <div className="input-group">
-            <label htmlFor="Email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              type="Email"
-              id="Email"
-              name="Email"
+              value={form.email}
+              onChange={onHandleChange}
+              type="email"
+              id="email"
+              name="email"
               placeholder="Enter Email Address"
             />
           </div>
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
+              value={form.password}
+              onChange={onHandleChange}
               type="password"
               id="password"
               name="password"
@@ -39,12 +65,14 @@ const Register = () => {
             />
           </div>
 
-          <button onClick={onHandleSubmit} className="button primary-button">
+          <button type="submit" className="button primary-button">
             Register
           </button>
         </form>
 
-        <p>Already have an Account? <Link to={"/login"}>Login</Link></p>
+        <p>
+          Already have an Account? <Link to={"/login"}>Login</Link>
+        </p>
       </div>
     </main>
   );
