@@ -35,7 +35,7 @@ const interviewReportSchema = z.object({
       "Technical questions that can be ask in an interview along with their intention"
     ),
 
-  BehavioralQuestions: z
+  behavioralQuestions: z
     .array(
       z.object({
         question: z
@@ -68,7 +68,7 @@ const interviewReportSchema = z.object({
     )
     .describe("The Skiil which candidate is lacking along with severity"),
 
-  preparation: z
+  preparationPlan: z
     .array(
       z.object({
         day: z

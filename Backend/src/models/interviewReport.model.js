@@ -36,7 +36,7 @@ const behavioralQuestionsSchema = new Schema(
   { _id: false }
 );
 
-const skillGapsSchema = new Schema(
+const skillGapSchema = new Schema(
   {
     skill: {
       type: String,
@@ -51,7 +51,7 @@ const skillGapsSchema = new Schema(
   { _id: false }
 );
 
-const preparationPlainSchema = Schema(
+const preparationPlanSchema = Schema(
   {
     day: {
       type: Number,
@@ -85,8 +85,8 @@ const interviewReportSchema = new Schema(
     },
     technicalQuestions: [technicalQuestionsSchema],
     behavioralQuestions: [behavioralQuestionsSchema],
-    skillGaps: [skillGapsSchema],
-    preparationPlain: [preparationPlainSchema],
+    skillGap: [skillGapSchema],
+    preparationPlan: [preparationPlanSchema],
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
