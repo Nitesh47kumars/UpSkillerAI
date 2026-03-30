@@ -40,9 +40,7 @@ const interviewReportSchema = z.object({
       z.object({
         question: z
           .string()
-          .describe(
-            "The Behavioral questions can be asked in the Interview"
-          ),
+          .describe("The Behavioral questions can be asked in the Interview"),
         intention: z
           .string()
           .describe(
@@ -75,9 +73,7 @@ const interviewReportSchema = z.object({
       z.object({
         day: z
           .number()
-          .describe(
-            "the day Number in the preparation plain, starting from 1"
-          ),
+          .describe("the day Number in the preparation plain, starting from 1"),
         focus: z
           .string()
           .describe(
@@ -95,12 +91,37 @@ const interviewReportSchema = z.object({
     ),
 });
 
-async function generateInterviewReport(
-  resume,
-  selfdescribe,
-  jobdescribe
-) {
-  const prompt = `Generate an interview Report for a candidate with the following Details:
+async function generateInterviewReport(resume, selfdescribe, jobdescribe) {
+  const prompt = `You are an expert technical interviewer and career coach.
+
+Analyze the candidate's resume, self-description, and the job description. Then generate:
+1. A match score (0-100) reflecting how well the candidate fits the role
+2. 3-5 targeted technical interview questions with interviewer intent and answer guidance
+3. 2-3 behavioral questions with intent and answer guidance
+4. Skill gaps the candidate needs to address, with severity
+5. A day-by-day preparation plan to help them get ready
+
+
+Analyze the candidate's resume, self-description, and job description. Return a JSON object with:
+
+- matchScore: number 0-100
+- technicalQuestions: array of strings, each formatted as:
+  "QUESTION: <question text> | INTENTION: <why interviewer asks this> | ANSWER: <how to answer, key points>"
+
+- BehavioralQuestions: array of strings, each formatted as:
+  "QUESTION: <question text> | INTENTION: <why interviewer asks this> | ANSWER: <how to answer, key points>"
+
+- skillGap: array of strings, each formatted as:
+  "<skill name> | severity: <low|medium|high>"
+
+- preparation: array of strings, each formatted as:
+  "Day <N> | <focus area> | <specific tasks to complete>"
+
+Do NOT add extra fields.
+Do NOT explain anything.
+
+
+Details:
     Resume: ${resume}
     Self describe: ${selfdescribe}
     Job describe: ${jobdescribe}
@@ -114,7 +135,7 @@ async function generateInterviewReport(
     },
   });
 
-  console.log("Gemini Result: ", JSON.parse(response.text))
+  console.log(JSON.parse(response.text));
 }
 
 export default generateInterviewReport;

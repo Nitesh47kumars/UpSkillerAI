@@ -1,37 +1,36 @@
-interviewReport: [
-  "Candidate Name: NITESH SHAH",
-  "Job Applied For: Software Engineer Intern (AI + Full-Stack)",
-  "Company: Leading Bird Company",
-  "Date of Report: 2024-07-29",
-  "Candidate Summary:",
-  "Nitesh Shah is a MERN Stack Developer (Fresher) currently pursuing a BCA. He has hands-on project experience in MongoDB, Express.js, React.js, and Node.js. His projects include a banking system with JWT authentication and role-based access control, a resume builder, a code editor, and a personal portfolio. He demonstrates proficiency in JavaScript (ES6+), React.js, Tailwind CSS, Node.js, and MongoDB. He highlights strong communication, teamwork, and a continuous learning mindset.",
-  "Job Description Analysis:",
-  "The role is a Software Engineer Intern (AI + Full-Stack) with a focus on building product features, working with senior engineers, and shipping weekly. Key requirements include comfort with JavaScript/TypeScript fundamentals, basic React experience, understanding of APIs, JSON, async, and databases. The role also involves working with LLM features (prompting, tool calling, basic RAG). Bonus skills include Python, Postgres, Redis, Docker, and LLM projects. The duration is 3-6 months, remote (IST collaboration), with potential PPO.",
-  "Resume Alignment with Job Description:",
-  "Strengths:",
-  "- Strong foundation in React.js and Node.js, directly aligning with core requirements.",
-  "- Experience with building RESTful APIs using Express.js and MongoDB, demonstrating understanding of backend APIs and databases.",
-  "- Project experience like the 'Banking System' showcases practical application of JWT, Bcrypt, and protected routes, indicating a good grasp of authentication and authorization.",
-  "- Familiarity with JavaScript (ES6+) and web app development is clearly evident.",
-  "- Soft skills like 'Willingness to Learn' and 'Fast Learner' are crucial for an intern role.",
-  "- Actively pursuing BCA and expected graduation in 2027 shows a committed academic background.",
-  "Weaknesses/Gaps:",
-  "- No explicit mention of TypeScript experience, which is preferred in the job description ('Node.js/TypeScript').",
-  "- Limited or no mention of AI/LLM specific projects or experience, which is a significant component of the role ('Generative AI', 'LLMs', 'Work with LLM features').",
-  "- No mention of SQL databases (Postgres) or other bonus skills like Python, Redis, Docker.",
-  "- While 'Figma to Code' is listed, it's not a core requirement and less relevant than AI skills for this specific role.",
-  "Self-Description Alignment with Job Description:",
-  "Strengths:",
-  "- Reiterates strong MERN stack skills and project experience, reinforcing the resume's alignment with React and Node.js requirements.",
-  "- Emphasizes the ability to build and deploy full-stack applications, directly matching the intern's responsibility to 'build real product features'.",
-  "- Highlights 'strong communication, teamwork, and a continuous learning mindset', which are explicitly sought-after qualities ('Can learn fast, communicate well, and take ownership').",
-  "- Expresses eagerness to contribute to real-world projects and learn from experienced developers, aligning with the internship's goal.",
-  "Weaknesses/Gaps:",
-  "- Again, the self-description lacks any mention of AI/LLM experience or enthusiasm for this specific area, which is a critical part of the 'AI + Full-Stack' role.",
-  "- Does not address TypeScript or database diversity beyond MongoDB.",
-  "Overall Assessment:",
-  "Nitesh Shah presents as a highly motivated and capable MERN Stack Developer with solid foundational skills in React.js, Node.js, and MongoDB, demonstrated through well-structured projects. His ability to build full-stack applications and his strong soft skills (communication, teamwork, eagerness to learn) make him a promising candidate for an internship.",
-  "However, a significant gap exists in his profile regarding the AI/LLM component of the 'Software Engineer Intern (AI + Full-Stack)' role. While he meets the full-stack requirements very well, the AI aspect (Generative AI, LLMs, prompting, RAG) appears to be unaddressed in his current experience. His lack of explicit TypeScript experience and broader database knowledge (SQL, Postgres) are also minor areas of concern.",
-  "Recommendation:",
-  "Conditional Hire. Nitesh is a strong candidate for the 'Full-Stack' portion of the role. Further evaluation is needed to gauge his interest, aptitude, and potential to quickly learn and contribute to the 'AI' aspects of the job. A technical discussion focusing on problem-solving, willingness to learn new technologies (especially LLMs/TypeScript), and how he approaches unfamiliar domains would be crucial. If he demonstrates strong potential and enthusiasm for the AI component, he would be a good fit, given his existing MERN expertise and learning mindset.",
-];
+{
+  matchScore: 70,
+  technicalQuestions: [
+    'QUESTION: In your Banking System project, you implemented JWT authentication. Can you explain the flow of JWT authentication from user login to accessing a protected route, and discuss any security considerations you took into account? | INTENTION: Assess understanding of authentication mechanisms, security best practices, and practical application. | ANSWER: User sends credentials; server authenticates, creates JWT with payload, signs it, and sends it back. Client stores token (e.g., localStorage). For protected routes, client sends token in the Authorization header; server verifies signature, expiration, and extracts user info. Security considerations include token expiration, refresh tokens, using HTTPS, avoiding sensitive information in the payload, and handling token revocation (e.g., via a blacklist).',        
+    "QUESTION: Your projects heavily use React.js. Can you explain the concept of React Hooks, specifically useState and useEffect, and provide a scenario where you'd use useRef? | INTENTION: Evaluate understanding of modern React features, common hooks, and their appropriate use cases. | ANSWER: Hooks allow functional components to use state and other React features. useState manages component-specific state. useEffect handles side effects (e.g., data fetching, DOM manipulation, subscriptions) and runs after render, with an optional cleanup function. useRef is used for directly interacting with DOM elements (e.g., focusing an input field), storing mutable values that don't trigger re-renders, or holding a reference to a timer ID.",
+    "QUESTION: You've worked with Node.js and Express.js to build RESTful APIs. How do you handle asynchronous operations in Node.js, and what are the benefits of using async/await compared to callbacks or Promises with .then()/.catch()? | INTENTION: Assess understanding of asynchronous programming patterns in Node.js and modern JavaScript best practices. | ANSWER: Asynchronous operations are handled using callbacks, Promises, or async/await. async/await provides a cleaner, more readable syntax that resembles synchronous code, simplifying error handling with try/catch and avoiding 'callback hell' or deeply nested .then() chains. It makes complex asynchronous flows much easier to manage.",
+    'QUESTION: Given the company builds AI-driven solutions, and you have limited direct experience with AI/LLMs, how would you approach learning the necessary concepts and technologies to contribute effectively to an AI-first product? | INTENTION: Gauge their learning agility, proactive approach to skill development, and ability to address significant knowledge gaps, which is crucial for an intern in an AI-focused role. | ANSWER: Express enthusiasm for AI. Outline a structured learning plan: start with fundamentals of AI/ML, then focus on LLM concepts (e.g., transformers, embeddings, prompt engineering, RAG, fine-tuning). Mention using resources like online courses (e.g., Coursera, deeplearning.ai), documentation, open-source projects, and reading blogs. Emphasize hands-on practice, starting with small projects, and leveraging senior engineers for mentorship and code reviews. Highlight willingness to learn fast and adapt to new technologies.'
+  ],
+  BehavioralQuestions: [
+    'QUESTION: Tell me about a time you encountered a significant technical challenge in one of your projects. How did you approach it, and what was the outcome? | INTENTION: Assess problem-solving skills, perseverance, debugging techniques, and ability to learn from difficulties. | ANSWER: Describe the problem clearly using the STAR method. Detail the steps taken to diagnose and resolve it (e.g., debugging, consulting documentation, online resources, asking for help). Explain the thought process and the final solution. Emphasize what was learned from the experience (e.g., a new technique, importance of testing, a specific debugging strategy).',
+    'QUESTION: This internship involves working closely with senior engineers and founders, shipping weekly, and taking ownership of small modules. How do you ensure effective communication and collaboration within a fast-paced team environment, especially when working remotely? | INTENTION: Evaluate communication skills, teamwork aptitude, and understanding of remote work best practices and agile delivery. | ANSWER: Emphasize proactive communication (asking clarifying questions, providing regular updates, seeking feedback), active listening, using communication tools effectively (Slack, video calls), documenting work, and participating constructively in code reviews. Highlight reliability with deadlines and contributing positively to the team dynamic, even in a remote setting.',
+    "QUESTION: As a fresher, you'll likely face situations where you don't know the answer or a specific technology. Describe a time you had to quickly learn a new technology or concept to complete a task. What was your process, and how did you ensure you grasped it sufficiently? | INTENTION: Assess learning agility, resourcefulness, and self-directed learning capabilities, which are critical for an intern role with a 'learn fast' requirement. | ANSWER: Provide a specific example (e.g., learning Tailwind CSS, Framer Motion, or a new library for a project). Explain the steps: understanding the problem, identifying the need for a new skill, researching (documentation, tutorials), hands-on practice, breaking down the learning into manageable chunks, and iteratively applying it. Mention how they verified their understanding (e.g., building a small feature, seeking feedback)."
+  ],
+  skillGap: [
+    'Generative AI/LLMs | severity: high',       
+    'TypeScript | severity: medium',
+    'Next.js | severity: low',
+    'Python | severity: low',
+    'Basic SQL | severity: low',
+    'Docker, Postgres, Redis | severity: low'    
+  ],
+  preparation: [
+    "Day 1 | JavaScript & React Fundamentals | Review ES6+ features, closures, 'this'. Practice common React patterns: component composition, state management (useState, useReducer), context API, lifecycle methods (useEffect).",
+    'Day 2 | Node.js & Express.js | Review asynchronous JavaScript, event loop, and error handling. Practice building RESTful APIs, implementing middleware, and understanding the request/response cycle.',
+    'Day 3 | Introduction to AI & LLMs | Research core concepts: what is AI/ML, basics of neural networks. Focus on LLM fundamentals: transformers, embeddings, and basic prompt engineering (zero-shot, few-shot).',
+    'Day 4 | LLM Concepts & Prompt Engineering | Deep dive into advanced prompt engineering techniques (chain-of-thought, self-consistency). Explore RAG (Retrieval Augmented Generation) and its importance. Begin experimenting with tools like OpenAI API or Hugging Face for basic prompt-response interactions.',
+    'Day 5 | LLM Application & Tooling | Understand how LLMs can be used for tool calling and function invocation. Practice integrating a public LLM API into a simple application, focusing on sending prompts and parsing responses.',
+    'Day 6 | TypeScript Fundamentals | Learn TypeScript basics: types, interfaces, enums, type inference. Practice converting small JavaScript functions and objects to TypeScript.',
+    'Day 7 | TypeScript for Web Development | Practice converting small React components and Node.js API endpoints from JavaScript to TypeScript. Understand how to configure TypeScript in a project.',
+    'Day 8 | Database & API Integration | Review MongoDB interactions with Mongoose (CRUD operations, schema design). Understand different API integration patterns (REST, Webhooks). Practice integrating a hypothetical third-party service via its API.',
+    'Day 9 | Version Control & Testing | Review Git advanced commands (e.g., rebase, cherry-pick). Practice writing unit/integration tests for React components (e.g., using React Testing Library) and Node.js APIs (e.g., using Jest/Supertest).', 
+    'Day 10 | System Design & Problem Solving | Work through a few common system design questions at an intern level (e.g., design a URL shortener or a notification system). Practice coding challenges (LeetCode easy/medium) focusing on data structures and algorithms relevant to web development.',
+    'Day 11 | Behavioral Interview Prep | Reflect on past experiences to prepare answers for common behavioral questions (e.g., learning new things, teamwork, handling challenges, taking ownership) using the STAR method.',
+    'Day 12 | Mock Interview & Review | Conduct a mock technical interview (including coding and system design discussion) and a mock behavioral interview. Review all concepts, identify weak areas, and do targeted practice.'
+  ]
+}
