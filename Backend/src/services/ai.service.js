@@ -105,17 +105,24 @@ Analyze the candidate's resume, self-description, and the job description. Then 
 Analyze the candidate's resume, self-description, and job description. Return a JSON object with:
 
 - matchScore: number 0-100
-- technicalQuestions: array of strings, each formatted as:
-  "QUESTION: <question text> | INTENTION: <why interviewer asks this> | ANSWER: <how to answer, key points>"
+- technicalQuestions: array of objects, each inside an object formatted as:
+  "QUESTION":" <question text>",
+  "INTENTION": "<why interviewer asks this>",
+  "ANSWER": "<how to answer, key points>"
 
-- BehavioralQuestions: array of strings, each formatted as:
-  "QUESTION: <question text> | INTENTION: <why interviewer asks this> | ANSWER: <how to answer, key points>"
+- BehavioralQuestions: array of objects, each inside an object formatted as:
+  "QUESTION": "<question text>",
+  "INTENTION": "<why interviewer asks this>",
+  "ANSWER": "<how to answer, key points>"
 
-- skillGap: array of strings, each formatted as:
-  "<skill name> | severity: <low|medium|high>"
+- skillGap: array of objects, each inside an object formatted as:
+  "skill": "<skill name>",
+  "severity": "<low|medium|high>"
 
-- preparation: array of strings, each formatted as:
-  "Day <N> | <focus area> | <specific tasks to complete>"
+- preparation: array of objects, each inside an object formatted as:
+  "Day": "<N>",
+  "focus": "<focus area on that day>",
+  "task": "<specific tasks to complete on that day>"
 
 Do NOT add extra fields.
 Do NOT explain anything.
@@ -127,7 +134,7 @@ Details:
     Job describe: ${jobdescribe}
     `;
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     contents: prompt,
     config: {
       responseMimeType: "application/json",

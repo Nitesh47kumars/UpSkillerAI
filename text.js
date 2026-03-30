@@ -1,36 +1,98 @@
 {
-  matchScore: 70,
+  matchScore: 80,
   technicalQuestions: [
-    'QUESTION: In your Banking System project, you implemented JWT authentication. Can you explain the flow of JWT authentication from user login to accessing a protected route, and discuss any security considerations you took into account? | INTENTION: Assess understanding of authentication mechanisms, security best practices, and practical application. | ANSWER: User sends credentials; server authenticates, creates JWT with payload, signs it, and sends it back. Client stores token (e.g., localStorage). For protected routes, client sends token in the Authorization header; server verifies signature, expiration, and extracts user info. Security considerations include token expiration, refresh tokens, using HTTPS, avoiding sensitive information in the payload, and handling token revocation (e.g., via a blacklist).',        
-    "QUESTION: Your projects heavily use React.js. Can you explain the concept of React Hooks, specifically useState and useEffect, and provide a scenario where you'd use useRef? | INTENTION: Evaluate understanding of modern React features, common hooks, and their appropriate use cases. | ANSWER: Hooks allow functional components to use state and other React features. useState manages component-specific state. useEffect handles side effects (e.g., data fetching, DOM manipulation, subscriptions) and runs after render, with an optional cleanup function. useRef is used for directly interacting with DOM elements (e.g., focusing an input field), storing mutable values that don't trigger re-renders, or holding a reference to a timer ID.",
-    "QUESTION: You've worked with Node.js and Express.js to build RESTful APIs. How do you handle asynchronous operations in Node.js, and what are the benefits of using async/await compared to callbacks or Promises with .then()/.catch()? | INTENTION: Assess understanding of asynchronous programming patterns in Node.js and modern JavaScript best practices. | ANSWER: Asynchronous operations are handled using callbacks, Promises, or async/await. async/await provides a cleaner, more readable syntax that resembles synchronous code, simplifying error handling with try/catch and avoiding 'callback hell' or deeply nested .then() chains. It makes complex asynchronous flows much easier to manage.",
-    'QUESTION: Given the company builds AI-driven solutions, and you have limited direct experience with AI/LLMs, how would you approach learning the necessary concepts and technologies to contribute effectively to an AI-first product? | INTENTION: Gauge their learning agility, proactive approach to skill development, and ability to address significant knowledge gaps, which is crucial for an intern in an AI-focused role. | ANSWER: Express enthusiasm for AI. Outline a structured learning plan: start with fundamentals of AI/ML, then focus on LLM concepts (e.g., transformers, embeddings, prompt engineering, RAG, fine-tuning). Mention using resources like online courses (e.g., Coursera, deeplearning.ai), documentation, open-source projects, and reading blogs. Emphasize hands-on practice, starting with small projects, and leveraging senior engineers for mentorship and code reviews. Highlight willingness to learn fast and adapt to new technologies.'
+    {
+      QUESTION: 'Describe the difference between `null` and `undefined` in JavaScript, and provide an example of when each might occur.',
+      INTENTION: 'Assesses fundamental JavaScript knowledge and understanding of data types and their states. This is crucial for any web development role.',
+      ANSWER: 'Null represents the intentional absence of any object value, whereas undefined means a variable has been declared but not yet assigned a value, or a function parameter was not provided. \n' +
+        'Example `null`: `let obj = null;` (intentional assignment of no value). \n' +
+        'Example `undefined`: `let x; console.log(x);` (variable declared but not assigned).'     
+    },
+    {
+      QUESTION: 'Explain the concept of RESTful APIs. What are the key principles, and how does your banking system project utilize them?',        
+      INTENTION: 'Evaluates understanding of backend architecture and API design, a core component of full-stack development. It also checks if the candidate can relate theoretical knowledge to practical experience.',
+      ANSWER: 'REST (Representational State Transfer) is an architectural style for designing networked applications. Key principles include client-server, statelessness, cacheability, layered system, and uniform interface (using HTTP methods like GET, POST, PUT, DELETE). \n' +
+        'In the banking system, RESTful APIs were used for creating accounts (POST), transferring funds (POST/PUT), and fetching transaction history (GET), all managed by Express.js.'
+    },
+    {
+      QUESTION: "You've mentioned JWT authentication and Bcrypt password hashing. Can you walk me through the flow of how a user logs in and how JWT is generated and validated in your banking system?",
+      INTENTION: 'Tests practical knowledge of security best practices in web applications, specifically authentication mechanisms. It assesses how the candidate implements and understands security concepts.',
+      ANSWER: '1. User submits credentials (username/password) to the backend. \n' +
+        "2. Backend verifies the password using Bcrypt by comparing the submitted password's hash with the stored hash. \n" +
+        '3. If valid, the backend generates a JWT containing user information (e.g., user ID, role). \n' +
+        '4. This JWT is sent back to the client. \n' +
+        "5. Client stores the JWT (e.g., in localStorage/sessionStorage) and includes it in the 'Authorization' header for subsequent requests. \n" +
+        "6. For protected routes, the backend verifies the JWT's signature and expiration. If valid, the request is processed; otherwise, it's rejected."
+    },
+    {
+      QUESTION: "The job description mentions working with LLM features like prompting and basic RAG. Can you explain what Retrieval-Augmented Generation (RAG) is at a high level, and how it might be applied in a healthcare context like Leading Bird Company's?",
+      INTENTION: "Assesses the candidate's grasp of AI concepts relevant to the role, even if their experience is basic. It checks their curiosity and ability to connect AI concepts to business applications.",
+      ANSWER: "RAG is a technique that enhances the capabilities of large language models (LLMs) by providing them with external, up-to-date information before generating a response. It involves retrieving relevant documents or data from a knowledge base (e.g., a database or vector store) based on the user's query, and then feeding this retrieved information along with the original query to the LLM to generate a more informed and accurate answer.\n" +
+        "In healthcare, RAG could be used to answer patient queries based on their medical records or to provide clinicians with summaries of the latest research relevant to a specific patient's condition, ensuring the AI's responses are grounded in factual, current data."
+    }
   ],
   BehavioralQuestions: [
-    'QUESTION: Tell me about a time you encountered a significant technical challenge in one of your projects. How did you approach it, and what was the outcome? | INTENTION: Assess problem-solving skills, perseverance, debugging techniques, and ability to learn from difficulties. | ANSWER: Describe the problem clearly using the STAR method. Detail the steps taken to diagnose and resolve it (e.g., debugging, consulting documentation, online resources, asking for help). Explain the thought process and the final solution. Emphasize what was learned from the experience (e.g., a new technique, importance of testing, a specific debugging strategy).',
-    'QUESTION: This internship involves working closely with senior engineers and founders, shipping weekly, and taking ownership of small modules. How do you ensure effective communication and collaboration within a fast-paced team environment, especially when working remotely? | INTENTION: Evaluate communication skills, teamwork aptitude, and understanding of remote work best practices and agile delivery. | ANSWER: Emphasize proactive communication (asking clarifying questions, providing regular updates, seeking feedback), active listening, using communication tools effectively (Slack, video calls), documenting work, and participating constructively in code reviews. Highlight reliability with deadlines and contributing positively to the team dynamic, even in a remote setting.',
-    "QUESTION: As a fresher, you'll likely face situations where you don't know the answer or a specific technology. Describe a time you had to quickly learn a new technology or concept to complete a task. What was your process, and how did you ensure you grasped it sufficiently? | INTENTION: Assess learning agility, resourcefulness, and self-directed learning capabilities, which are critical for an intern role with a 'learn fast' requirement. | ANSWER: Provide a specific example (e.g., learning Tailwind CSS, Framer Motion, or a new library for a project). Explain the steps: understanding the problem, identifying the need for a new skill, researching (documentation, tutorials), hands-on practice, breaking down the learning into manageable chunks, and iteratively applying it. Mention how they verified their understanding (e.g., building a small feature, seeking feedback)."
+    {
+      QUESTION: 'Describe a time you encountered a significant technical challenge in one of your projects. How did you approach it, and what was the outcome?',
+      INTENTION: "Evaluates problem-solving skills, resilience, and the candidate's approach to overcoming obstacles. It helps understand their debugging process and learning agility.",
+      ANSWER: 'Use the STAR method (Situation, Task, Action, Result). Detail the specific challenge (e.g., a complex bug, integration issue), the steps taken to diagnose and fix it (research, testing different solutions, seeking help if needed), and the final resolution and any lessons learned.'
+    },
+    {
+      QUESTION: 'This internship involves working closely with senior engineers and potentially taking ownership of small modules. Can you give an example of a time you collaborated with others on a project, and how you ensured effective teamwork?',
+      INTENTION: 'Assesses teamwork and collaboration skills, crucial for working in a team environment and learning from others. It checks their ability to communicate and contribute effectively.',
+      ANSWER: 'Highlight a group project experience. Discuss communication methods used (e.g., regular check-ins, clear task assignments), how disagreements were resolved, how individual contributions fit into the larger project, and the overall success achieved through collaboration.'        
+    },
+    {
+      QUESTION: 'The role requires fast learning and adapting to new technologies, including AI concepts. How do you typically approach learning a new technology or concept, and can you provide an example?',
+      INTENTION: "Gauges the candidate's learning aptitude and proactiveness, essential for an intern role that involves exposure to new and advanced technologies like AI. It checks their self-directed learning strategies.",
+      ANSWER: 'Explain your learning process: starting with fundamentals, hands-on practice (building small projects/examples), documentation review, seeking tutorials or courses, and applying the knowledge to solve specific problems. Use an example like learning React or Redux, or even a basic AI concept you explored.'
+    }
   ],
   skillGap: [
-    'Generative AI/LLMs | severity: high',       
-    'TypeScript | severity: medium',
-    'Next.js | severity: low',
-    'Python | severity: low',
-    'Basic SQL | severity: low',
-    'Docker, Postgres, Redis | severity: low'    
+    {
+      skill: 'Generative AI / LLM Concepts (Prompting, RAG)',
+      severity: 'medium'
+    },
+    { skill: 'TypeScript', severity: 'low' },    
+    { skill: 'Python (Bonus)', severity: 'low' },
+    { skill: 'Postgres / SQL (Basic)', severity: 'low' },
+    { skill: 'Docker (Bonus)', severity: 'low' } 
   ],
   preparation: [
-    "Day 1 | JavaScript & React Fundamentals | Review ES6+ features, closures, 'this'. Practice common React patterns: component composition, state management (useState, useReducer), context API, lifecycle methods (useEffect).",
-    'Day 2 | Node.js & Express.js | Review asynchronous JavaScript, event loop, and error handling. Practice building RESTful APIs, implementing middleware, and understanding the request/response cycle.',
-    'Day 3 | Introduction to AI & LLMs | Research core concepts: what is AI/ML, basics of neural networks. Focus on LLM fundamentals: transformers, embeddings, and basic prompt engineering (zero-shot, few-shot).',
-    'Day 4 | LLM Concepts & Prompt Engineering | Deep dive into advanced prompt engineering techniques (chain-of-thought, self-consistency). Explore RAG (Retrieval Augmented Generation) and its importance. Begin experimenting with tools like OpenAI API or Hugging Face for basic prompt-response interactions.',
-    'Day 5 | LLM Application & Tooling | Understand how LLMs can be used for tool calling and function invocation. Practice integrating a public LLM API into a simple application, focusing on sending prompts and parsing responses.',
-    'Day 6 | TypeScript Fundamentals | Learn TypeScript basics: types, interfaces, enums, type inference. Practice converting small JavaScript functions and objects to TypeScript.',
-    'Day 7 | TypeScript for Web Development | Practice converting small React components and Node.js API endpoints from JavaScript to TypeScript. Understand how to configure TypeScript in a project.',
-    'Day 8 | Database & API Integration | Review MongoDB interactions with Mongoose (CRUD operations, schema design). Understand different API integration patterns (REST, Webhooks). Practice integrating a hypothetical third-party service via its API.',
-    'Day 9 | Version Control & Testing | Review Git advanced commands (e.g., rebase, cherry-pick). Practice writing unit/integration tests for React components (e.g., using React Testing Library) and Node.js APIs (e.g., using Jest/Supertest).', 
-    'Day 10 | System Design & Problem Solving | Work through a few common system design questions at an intern level (e.g., design a URL shortener or a notification system). Practice coding challenges (LeetCode easy/medium) focusing on data structures and algorithms relevant to web development.',
-    'Day 11 | Behavioral Interview Prep | Reflect on past experiences to prepare answers for common behavioral questions (e.g., learning new things, teamwork, handling challenges, taking ownership) using the STAR method.',
-    'Day 12 | Mock Interview & Review | Conduct a mock technical interview (including coding and system design discussion) and a mock behavioral interview. Review all concepts, identify weak areas, and do targeted practice.'
+    {
+      Day: '1',
+      focus: 'Core JavaScript & Web Fundamentals',
+      task: 'Review ES6+ features (arrow functions, promises, async/await), closures, `null` vs `undefined`, `==` vs `===`. Practice basic DOM manipulation and event handling.'
+    },
+    {
+      Day: '2',
+      focus: 'React.js Deep Dive',
+      task: 'Understand React Hooks (useState, useEffect, useContext), component lifecycle, state management (briefly review Redux if comfortable, but focus on context API for simplicity). Practice building a small interactive component.'       
+    },
+    {
+      Day: '3',
+      focus: 'Node.js & Express.js APIs',        
+      task: 'Review creating RESTful APIs, middleware, request/response objects. Practice building a simple CRUD API. Understand concepts like routing and handling different HTTP methods.'        
+    },
+    {
+      Day: '4',
+      focus: 'Databases & Authentication',       
+      task: 'Refresh MongoDB/Mongoose basics. Understand JWT generation/validation and Bcrypt hashing flow. Review Postman usage for testing APIs.'
+    },
+    {
+      Day: '5',
+      focus: 'AI/LLM Concepts & Job Specifics',  
+      task: 'Research basic Generative AI concepts, Prompt Engineering, and Retrieval-Augmented Generation (RAG). Understand how these apply to the healthcare domain described in the job. Briefly look into TypeScript fundamentals.'
+    },
+    {
+      Day: '6',
+      focus: 'Behavioral & Project Review',      
+      task: 'Prepare STAR method answers for common behavioral questions (challenges, teamwork, learning). Review your projects (Banking System, Resumify, etc.) and be ready to discuss technical details and architectural decisions.'
+    },
+    {
+      Day: '7',
+      focus: 'Mock Interview & Refinement',      
+      task: 'Conduct a mock interview covering technical and behavioral aspects. Identify weak areas and spend time reinforcing them. Refine your answers and ensure you can clearly articulate your experience and understanding.'
+    }
   ]
 }
