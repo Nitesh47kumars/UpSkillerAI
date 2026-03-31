@@ -61,7 +61,7 @@ const preparationPlanSchema = Schema(
       type: String,
       required: [true, "Focus is Required!"],
     },
-    tasks: [{ type: String, required: [true, "Tasks are Required!"] }],
+    task: [{ type: String, required: [true, "Tasks are Required!"] }],
   },
   { _id: false }
 );
