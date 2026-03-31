@@ -1,0 +1,246 @@
+$bg: #0b0f17;
+$card: #111827;
+$border: #1f2937;
+$text: #e5e7eb;
+$muted: #9ca3af;
+$accent: #ec4899;
+
+.home {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #111827, $bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text;
+
+  .container {
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-size: clamp(1rem, 4vh, 2rem );
+      font-weight: 700;
+      letter-spacing: -0.5px;
+
+      span {
+        color: $accent;
+      }
+    }
+
+    p {
+      color: $muted;
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .card {
+    display: flex;
+    border-radius: 1.2rem;
+    overflow: hidden;
+
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid $border;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  .panel {
+    flex: 1;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:first-child {
+      border-right: 1px solid $border;
+    }
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.3rem;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    svg {
+      color: $accent;
+      font-size: 1.2rem;
+    }
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    background: rgba(127, 29, 29, 0.6);
+    color: #fecaca;
+    padding: 3px 8px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+
+  textarea {
+    background: #020617;
+    border: 1px solid $border;
+    border-radius: 0.8rem;
+    padding: 0.8rem 1rem;
+    outline: none;
+    color: white;
+
+    min-height: 170px;
+    height: 100%;
+    resize: none;
+
+    font-size: 0.9rem;
+
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: #6b7280;
+    }
+
+    &:focus {
+      border-color: $accent;
+      box-shadow: 0 0 0 1px $accent;
+    }
+  }
+
+  .upload-box {
+    border: 1px dashed $border;
+    border-radius: 0.8rem;
+    padding: 2rem 1rem;
+    background: #020617;
+
+    text-align: center;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+      border-color: $accent;
+      background: rgba(236, 72, 153, 0.06);
+      transform: translateY(-2px);
+    }
+
+    svg {
+      font-size: 32px;
+      color: $accent;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    small {
+      color: $muted;
+      font-size: 0.8rem;
+    }
+  }
+
+  .file-name {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: $accent;
+    word-break: break-all;
+  }
+
+  .divider {
+    text-align: center;
+    color: $muted;
+    font-size: 0.75rem;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: $border;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  // 🔥 INFO BOX
+  .info-box {
+    background: rgba(30, 58, 138, 0.25);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .cta-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+
+    border: none;
+    border-radius: 0.8rem;
+
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    color: white;
+
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.45);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // 📱 RESPONSIVE
+  @media (max-width: 768px) {
+    .card {
+      flex-direction: column;
+    }
+.panel{
+    padding: 1.5rem 1rem;
+}
+
+    .panel:first-child {
+      border-right: none;
+      border-bottom: 1px solid $border;
+    }
+  }
+}
