@@ -1,6 +1,9 @@
 import { Router } from "express";
 import authUser from "../middlewares/auth.middleware.js";
-import { interviewReportController } from "../controllers/interview.controller.js";
+import {
+  generateInterviewReportController,
+  getInterviewReportByIdController,
+} from "../controllers/interview.controller.js";
 import upload from "../middlewares/file.multer.js";
 
 export const interviewRouter = Router();
@@ -14,5 +17,17 @@ interviewRouter.post(
   "/",
   authUser,
   upload.single("resume"),
-  interviewReportController
+  generateInterviewReportController
+);
+
+interviewRouter.get(
+  "/report/:interviewID",
+  authUser,
+  getInterviewReportByIdController
+);
+
+interviewRouter.get(
+  "/report/:interviewID",
+  authUser,
+  getAllInterviewReportsController
 );
