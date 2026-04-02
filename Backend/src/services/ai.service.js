@@ -15,6 +15,7 @@ Return ONLY a valid JSON object. No markdown, no code blocks, no explanation.
 
 {
   "matchScore": <number 0-100>,
+  "title": <titleOfThisReport>
   "technicalQuestions": [
     {
       "question": "<question text>",
@@ -67,6 +68,7 @@ Job Description: ${jobDescription}`;
 
   return {
     matchScore: raw.matchScore,
+    title: raw.title,
     technicalQuestions: raw.technicalQuestions.map((item) => ({
       question: item.question || "",
       intention: item.intention || "",

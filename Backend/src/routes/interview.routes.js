@@ -2,6 +2,7 @@ import { Router } from "express";
 import authUser from "../middlewares/auth.middleware.js";
 import {
   generateInterviewReportController,
+  getAllInterviewReportsController,
   getInterviewReportByIdController,
 } from "../controllers/interview.controller.js";
 import upload from "../middlewares/file.multer.js";

@@ -83,6 +83,10 @@ const interviewReportSchema = new Schema(
       min: 0,
       max: 100,
     },
+    title: {
+      type: String,
+      required: true,
+    },
     technicalQuestions: [technicalQuestionsSchema],
     behavioralQuestions: [behavioralQuestionsSchema],
     skillGap: [skillGapSchema],
