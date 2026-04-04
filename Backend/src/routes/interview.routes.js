@@ -21,14 +21,24 @@ interviewRouter.post(
   generateInterviewReportController
 );
 
+/**
+ *  @route GET /api/interview/report/:interviewId
+ *  @description get the sepecific interview report by id
+ *  @access private
+ */
 interviewRouter.get(
-  "/report/:interviewID",
+  "/report/:interviewId",
   authUser,
   getInterviewReportByIdController
 );
 
+/**
+ *  @route GET /api/interview/report/:interviewId
+ *  @description get All interview reports of a sepecific User
+ *  @access private
+ */
 interviewRouter.get(
-  "/report/:interviewID",
+  "/",
   authUser,
   getAllInterviewReportsController
 );

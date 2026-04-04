@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "../style/home.scss";
 
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { IoPerson } from "react-icons/io5";
 import { LuCloudUpload } from "react-icons/lu";
+import { useInterview } from "../hooks/useInterview";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+  const { loading, generateReport } = useInterview();
+
   const [resumeName, setResumeName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) setResumeName(file.name);
+  const resumeInputRef = useRef();
+  const navigate = useNavigate();
+
+  const handleGenerateReport = async () => {
+    const resume = resumeInputRef.current.files[0];
+    const data = await generateReport({
+      jobDescription,
+      selfDescription,
+      resume,
+    });
+    navigate(`/interview/${data._id}`);
   };
+
+  if(loading){
+    return <h1>Loading Intervew Report...</h1>
+  }
 
   return (
     <main className="home">
@@ -63,7 +79,7 @@ const Home = () => {
                 type="file"
                 hidden
                 accept=".pdf, .docs,.docx"
-                onChange={handleFileChange}
+                ref={resumeInputRef}
               />
               <LuCloudUpload />
               <p>Click to upload or drag & drop</p>
@@ -88,7 +104,9 @@ const Home = () => {
         </div>
 
         {/* FOOTER BUTTON */}
-        <button className="cta-btn">⭐ Generate My Interview Strategy</button>
+        <button onClick={handleGenerateReport} className="cta-btn">
+          ⭐ Generate My Interview Strategy
+        </button>
       </div>
     </main>
   );

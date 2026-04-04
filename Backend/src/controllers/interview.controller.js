@@ -79,6 +79,14 @@ const getInterviewReportByIdController = async (req, res) => {
  */
 const getAllInterviewReportsController = async (req, res) => {
   const interviewReports = interviewReportModel
+    .find({ user: req.user.id })
+    .sort({ createAt: -1 })
+    .select("+title +_id");
+
+  return res.status(200).json({
+    message: "All Interview Reports Fetched Sucessfully",
+    interviewReports,
+  });
 };
 
 export {
