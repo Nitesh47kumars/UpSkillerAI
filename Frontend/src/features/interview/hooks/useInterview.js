@@ -59,20 +59,22 @@ export const useInterview = () => {
     let response = null;
     try {
       response = await getAllInterviewReports();
-      setReports(response.interviewReport);
+      setReports(response.interviewReports);
+      return response.interviewReports
     } catch (err) {
       console.log(err);
     } finally {
       setLoading(false);
     }
-    return response.interviewReport;
+    return response.interviewReports;
   };
+
   useEffect(()=>{
-    if(interviewId){
+    {if(interviewId){
       getReportById(interviewId);
     }else{
       getAllReports()
-    }
+    }}
   },[])
 
   return {

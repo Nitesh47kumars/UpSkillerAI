@@ -8,7 +8,7 @@ import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
 
 const Home = () => {
-  const { loading, generateReport } = useInterview();
+  const { loading, generateReport, reports } = useInterview();
 
   const [resumeName, setResumeName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
@@ -26,6 +26,8 @@ const Home = () => {
     });
     navigate(`/interview/${data._id}`);
   };
+
+  console.log(reports)
 
   if(loading){
     return <h1>Loading Intervew Report...</h1>
@@ -107,6 +109,16 @@ const Home = () => {
         <button onClick={handleGenerateReport} className="cta-btn">
           ⭐ Generate My Interview Strategy
         </button>
+        {reports.length > 0 &&(
+          <section>
+            <h1>
+              Recent Interview Plans
+            </h1>
+            <ul>
+             {reports.map((r)=><li key={r._id}>{r.title}</li>)}
+            </ul>
+          </section>
+        )}
       </div>
     </main>
   );

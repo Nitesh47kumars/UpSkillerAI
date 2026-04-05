@@ -78,10 +78,10 @@ const getInterviewReportByIdController = async (req, res) => {
  * @description Controller to get All Report from Sepecific User
  */
 const getAllInterviewReportsController = async (req, res) => {
-  const interviewReports = interviewReportModel
+  const interviewReports = await interviewReportModel
     .find({ user: req.user.id })
-    .sort({ createAt: -1 })
-    .select("+title +_id");
+    .sort({ createdAt: -1 })
+    .select("title _id");
 
   return res.status(200).json({
     message: "All Interview Reports Fetched Sucessfully",
