@@ -40,7 +40,7 @@ export const useInterview = () => {
     return response.interviewReport;
   };
 
-  const getReportById = async ({ interviewId }) => {
+  const getReportById = async ( interviewId ) => {
     setLoading(true);
     let response = null;
     try {

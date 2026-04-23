@@ -27,10 +27,10 @@ const Home = () => {
     navigate(`/interview/${data._id}`);
   };
 
-  console.log(reports)
+  console.log(reports);
 
-  if(loading){
-    return <h1>Loading Intervew Report...</h1>
+  if (loading) {
+    return <h1>Loading Intervew Report...</h1>;
   }
 
   return (
@@ -109,13 +109,37 @@ const Home = () => {
         <button onClick={handleGenerateReport} className="cta-btn">
           ⭐ Generate My Interview Strategy
         </button>
-        {reports.length > 0 &&(
-          <section>
-            <h1>
-              Recent Interview Plans
-            </h1>
-            <ul>
-             {reports.map((r)=><li key={r._id}>{r.title}</li>)}
+
+        {reports.length > 0 && (
+          <section className="recent-reports">
+            <h1>Recent Interview Plans</h1>
+            <ul className="reports-list">
+              {reports.map((r) => (
+                <li
+                  key={r._id}
+                  className="report-item"
+                  onClick={() => navigate(`/interview/${r._id}`)}
+                >
+                  <h3>{r.title || "Untitled"}</h3>
+                  <p>
+                    Generate on {new Date(r.createdAt).toLocaleDateString()}
+                  </p>
+                  <p>
+                    MatchScore:{" "}
+                    <span
+                      className={
+                        r.matchScore >= 80
+                          ? "score-high"
+                          : r.matchScore >= 60
+                          ? "score-md"
+                          : "score-low"
+                      }
+                    >
+                      {r.matchScore}
+                    </span>
+                  </p>{" "}
+                </li>
+              ))}
             </ul>
           </section>
         )}
