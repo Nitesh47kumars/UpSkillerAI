@@ -2,6 +2,7 @@ import { Router } from "express";
 import authUser from "../middlewares/auth.middleware.js";
 import {
   generateInterviewReportController,
+  generateResumePdfController,
   getAllInterviewReportsController,
   getInterviewReportByIdController,
 } from "../controllers/interview.controller.js";
@@ -42,3 +43,11 @@ interviewRouter.get(
   authUser,
   getAllInterviewReportsController
 );
+
+
+/**
+ * @route GET /api/interview/resume/pdf
+ * @description generate resume pdf on the basis of user self description, resume content and job description.
+ * @access private
+ */
+interviewRouter.post("/resume/pdf/:interviewReportId", authUser, generateResumePdfController)

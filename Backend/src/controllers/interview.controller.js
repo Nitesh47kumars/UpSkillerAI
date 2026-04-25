@@ -1,5 +1,5 @@
 import { extractText } from "unpdf";
-import generateInterviewReport from "../services/ai.service.js";
+import {generateInterviewReport, generateResumePDF} from "../services/ai.service.js";
 import { interviewReportModel } from "../models/interviewReport.model.js";
 
 /**
@@ -89,8 +89,35 @@ const getAllInterviewReportsController = async (req, res) => {
   });
 };
 
+/**
+ *  @description Controller to generate resume PDF based on user self description, resume and job description.
+ */
+
+async function generateResumePdfController(req, res){
+  const { interviewReportId} = req.params
+  const interviewReport = await interviewReportModel.findById(interviewReportId);
+
+  if(!interviewReport){
+    return res.status(401).json({
+      message: "Interview Report not found."
+    })
+  }
+
+  const {resume, jobDescription, selfDescription} = interviewReport;
+
+  const pdfBuffer = await generateResumePDF({resume, selfDescription, jobDescription})
+
+  res.set({
+    "Content-Type": "application/pdf",
+    "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`
+  })
+
+  res.send(pdfBuffer)
+}
+
 export {
   generateInterviewReportController,
   getInterviewReportByIdController,
   getAllInterviewReportsController,
+  generateResumePdfController
 };
