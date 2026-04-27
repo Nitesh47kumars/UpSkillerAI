@@ -27,8 +27,6 @@ const Home = () => {
     navigate(`/interview/${data._id}`);
   };
 
-  console.log(reports);
-
   if (loading) {
     return <h1>Loading Intervew Report...</h1>;
   }

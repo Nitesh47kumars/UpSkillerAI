@@ -4,6 +4,7 @@ import {
   generateInterviewReport,
   getAllInterviewReports,
   getInterviewReportById,
+  generateResumePdf
 } from "../services/interview.api";
 import { useParams } from "react-router";
 
@@ -44,7 +45,7 @@ export const useInterview = () => {
     setLoading(true);
     let response = null;
     try {
-      response = await getInterviewReportById(interviewId);
+      response = await getInterviewReportById({interviewId});
       setReport(response.interviewReport);
     } catch (err) {
       console.log(err);
@@ -69,7 +70,7 @@ export const useInterview = () => {
     return response.interviewReports;
   };
 
-  const getResumePdf = async (interviewReportId) =>{
+  const getResumePdf = async ({interviewReportId}) =>{
     setLoading(true)
     let response = null
 
@@ -77,7 +78,8 @@ export const useInterview = () => {
       response = await generateResumePdf({interviewReportId});
       const url = window.URL.createObjectURL(new Blob([response],{type: "application/pdf"}))
       const link = document.createElement("a")
-      link.href = urllink.setAttribute("download", `resume_${interviewReportId}.pdf`)
+      link.href = url
+      link.setAttribute("download", `resume_${interviewReportId}.pdf`)
       document.body.appendChild(link)
       link.click()
     }catch(err){
@@ -89,7 +91,7 @@ export const useInterview = () => {
 
   useEffect(()=>{
     {if(interviewId){
-      getReportById(interviewId);
+      getReportById({interviewId});
     }else{
       getAllReports()
     }}
