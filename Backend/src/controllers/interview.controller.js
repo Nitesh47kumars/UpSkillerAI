@@ -92,7 +92,6 @@ const getAllInterviewReportsController = async (req, res) => {
 /**
  *  @description Controller to generate resume PDF based on user self description, resume and job description.
  */
-
 async function generateResumePdfController(req, res){
   const { interviewReportId} = req.params
   const interviewReport = await interviewReportModel.findById(interviewReportId);

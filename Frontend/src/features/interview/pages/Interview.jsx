@@ -3,6 +3,7 @@ import "../style/interview.scss";
 import { useInterview } from "../hooks/useInterview";
 import { useParams } from "react-router";
 import { SiGooglegemini } from "react-icons/si";
+import Loading from "../Components/Loading"
 
 const IconCode = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -161,7 +162,7 @@ export default function Interview() {
   }, [interviewId]);
 
   if (loading || !report) {
-    return <h1>Loading Report...</h1>;
+    return <Loading/>
   }
 
   return (

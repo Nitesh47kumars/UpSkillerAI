@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+import Loading from "../../interview/Components/Loading";
 
 const Register = () => {
   const { loading, handleRegister } = useAuth();
@@ -24,7 +25,7 @@ const Register = () => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading/>
   }
   return (
     <main>

@@ -6,6 +6,7 @@ import { IoPerson } from "react-icons/io5";
 import { LuCloudUpload } from "react-icons/lu";
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
+import Loading from "../Components/Loading"
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
@@ -28,7 +29,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <h1>Loading Intervew Report...</h1>;
+    return <Loading/>
   }
 
   return (

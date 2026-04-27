@@ -1,12 +1,13 @@
 import React from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router";
+import Loading from "../../interview/Components/Loading";
 
 const Protected = ({ children }) => {
   const { loading, user } = useAuth();
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading/>
   }
 
   if (!user) {
