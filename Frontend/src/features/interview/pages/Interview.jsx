@@ -241,8 +241,6 @@ export default function Interview() {
     }
   }, [interviewId]);
 
-  console.log(report);
-
   if (loading || !report) {
     return <h1>Loading Report...</h1>;
   }

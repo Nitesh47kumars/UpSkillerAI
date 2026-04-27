@@ -40,7 +40,7 @@ export const useInterview = () => {
     return response.interviewReport;
   };
 
-  const getReportById = async ( interviewId ) => {
+  const getReportById = async ({interviewId}) => {
     setLoading(true);
     let response = null;
     try {
@@ -69,6 +69,24 @@ export const useInterview = () => {
     return response.interviewReports;
   };
 
+  const getResumePdf = async (interviewReportId) =>{
+    setLoading(true)
+    let response = null
+
+    try{
+      response = await generateResumePdf({interviewReportId});
+      const url = window.URL.createObjectURL(new Blob([response],{type: "application/pdf"}))
+      const link = document.createElement("a")
+      link.href = urllink.setAttribute("download", `resume_${interviewReportId}.pdf`)
+      document.body.appendChild(link)
+      link.click()
+    }catch(err){
+      console.log(err);
+    }finally{
+      setLoading(false)
+    }
+  }
+
   useEffect(()=>{
     {if(interviewId){
       getReportById(interviewId);
@@ -84,5 +102,6 @@ export const useInterview = () => {
     generateReport,
     getReportById,
     getAllReports,
+    getResumePdf
   };
 };
