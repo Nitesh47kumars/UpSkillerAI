@@ -8,11 +8,21 @@ export const useAuth = () => {
 
   const handleLogin = async ({ email, password }) => {
     setLoading(true);
+  
     try {
       const data = await login({ email, password });
+  
+      if (!data) {
+        throw new Error("Login failed");
+      }
+  
       setUser(data.user);
+  
+      return data;
     } catch (err) {
       console.log("HandleLogin Error:", err);
+  
+      throw err; // IMPORTANT
     } finally {
       setLoading(false);
     }

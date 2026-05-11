@@ -24,6 +24,7 @@ export async function login({ email, password }) {
     return response.data;
   } catch (err) {
     console.log("Login Error: ", err);
+    throw err.response?.data || err
   }
 }
 

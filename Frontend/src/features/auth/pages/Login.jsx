@@ -31,15 +31,8 @@ const Login = () => {
       await handleLogin(form);
       navigate("/");
     }catch(e){
-      setError("Invalid email or password");
+      setError(e.message || "Invalid email or password");
     }
-
-    // const success = await handleLogin(form);
-    // if (success) {
-    //   navigate("/");
-    // } else {
-    //   setError("Invalid email or password");
-    // }
   };
 
   if (loading) return <Loading />;
