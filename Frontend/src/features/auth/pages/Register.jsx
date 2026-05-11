@@ -5,7 +5,6 @@ import Loading from "../../interview/Components/Loading";
 
 const Register = () => {
   const { loading, handleRegister } = useAuth();
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -14,65 +13,81 @@ const Register = () => {
     password: "",
   });
 
-  const onHandleChange = () => {
-    return setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const [error, setError] = useState("");
+
+  const onHandleChange = (e) => {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    await handleRegister(form);
-    navigate("/");
+    setError("");
+
+    const success = await handleRegister(form);
+
+    if (success) {
+      navigate("/");
+    } else {
+      setError("Registration failed. Try again.");
+    }
   };
 
-  if (loading) {
-    return <Loading/>
-  }
+  if (loading) return <Loading />;
+
   return (
-    <main>
+    <main className="auth-page">
       <div className="form-container">
-        <h1>Register</h1>
+        <h1>Create Account 🚀</h1>
+
+        {error && <p className="error">{error}</p>}
+
         <form onSubmit={onHandleSubmit}>
           <div className="input-group">
-            <label htmlFor="userName">UserName</label>
+            <label>Username</label>
             <input
+              name="userName"
               value={form.userName}
               onChange={onHandleChange}
-              type="userName"
-              id="userName"
-              name="userName"
-              placeholder="Enter UserName"
+              type="text"
+              placeholder="Enter username"
+              required
             />
           </div>
+
           <div className="input-group">
-            <label htmlFor="email">Email</label>
+            <label>Email</label>
             <input
+              name="email"
               value={form.email}
               onChange={onHandleChange}
               type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Email Address"
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              value={form.password}
-              onChange={onHandleChange}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter Password"
+              placeholder="Enter email"
+              required
             />
           </div>
 
-          <button type="submit" className="button primary-button">
-            Register
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              name="password"
+              value={form.password}
+              onChange={onHandleChange}
+              type="password"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+
+          <button disabled={loading} className="button primary-button">
+            {loading ? "Creating..." : "Register"}
           </button>
         </form>
 
         <p>
-          Already have an Account? <Link to={"/login"}>Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </main>

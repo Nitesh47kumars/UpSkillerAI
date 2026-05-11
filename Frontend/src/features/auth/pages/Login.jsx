@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../auth.form.scss";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import Loading from "../../interview/Components/Loading";
+import "../auth.form.scss";
 
 const Login = () => {
   const { loading, handleLogin } = useAuth();
@@ -11,54 +11,84 @@ const Login = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
-  });
+  }); 
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const onHandleChange = (e) => {
-    return setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin(form);
-    navigate("/")
+    setError("");
+
+    try{
+      await handleLogin(form);
+      navigate("/");
+    }catch(e){
+      setError("Invalid email or password");
+    }
+
+    // const success = await handleLogin(form);
+    // if (success) {
+    //   navigate("/");
+    // } else {
+    //   setError("Invalid email or password");
+    // }
   };
 
-  if (loading) {
-    return <Loading/>
-  }
+  if (loading) return <Loading />;
+
   return (
-    <main>
+    <main className="auth-page">
       <div className="form-container">
-        <h1>Login</h1>
+        <h1>Welcome Back 👋</h1>
+        <p className="subtitle">Login to continue</p>
+
+        {error && <p className="error">{error}</p>}
+
         <form onSubmit={onHandleSubmit}>
           <div className="input-group">
-            <label htmlFor="email">Email</label>
+            <label>Email</label>
             <input
+              name="email"
               value={form.email}
               onChange={onHandleChange}
               type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Email Address"
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              value={form.password}
-              onChange={onHandleChange}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter Password"
+              placeholder="Enter your email"
+              required
             />
           </div>
 
-          <button className="button primary-button">Login</button>
+          <div className="input-group">
+            <label>Password</label>
+            <div className="password-field">
+              <input
+                name="password"
+                value={form.password}
+                onChange={onHandleChange}
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                required
+              />
+              <span onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? "Hide" : "Show"}
+              </span>
+            </div>
+          </div>
+
+          <button disabled={loading} className="button primary-button">
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </form>
+
         <p>
-          Don't have any Account, Create new one{" "}
-          <Link to={"/register"}>Register</Link>
+          Don't have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </main>

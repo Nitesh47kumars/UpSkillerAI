@@ -8,7 +8,7 @@ import { interviewReportModel } from "../models/interviewReport.model.js";
  */
 const generateInterviewReportController = async (req, res) => {
   try {
-    const resumeBuffer = new Uint8Array(req.file.buffer);
+    const resumeBuffer = new Uint8Array(req.file?.buffer);
     const { text } = await extractText(resumeBuffer, { mergePages: true });
     const resumeText = Array.isArray(text) ? text.join(" ") : text;
 

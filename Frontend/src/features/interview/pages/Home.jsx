@@ -6,10 +6,13 @@ import { IoPerson } from "react-icons/io5";
 import { LuCloudUpload } from "react-icons/lu";
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
-import Loading from "../Components/Loading"
+import Loading from "../Components/Loading";
+import { useAuth } from "../../auth/hooks/useAuth";
+import { logout } from "../../auth/services/auth.api";
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
+  const { handlelogout } = useAuth();
 
   const [resumeName, setResumeName] = useState("");
   const [jobDescription, setJobDescription] = useState("");
@@ -28,8 +31,13 @@ const Home = () => {
     navigate(`/interview/${data._id}`);
   };
 
+  const onHandleLogout = async () => {
+    await handlelogout();
+    navigate("/login");
+  };
+
   if (loading) {
-    return <Loading/>
+    return <Loading />;
   }
 
   return (
@@ -45,6 +53,9 @@ const Home = () => {
             winning strategy.
           </p>
         </div>
+        <button className="button logout-button" onClick={onHandleLogout}>
+          Logout
+        </button>
 
         {/* MAIN CARD */}
         <div className="card">
