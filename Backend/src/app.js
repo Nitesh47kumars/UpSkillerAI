@@ -18,6 +18,14 @@ app.use(
 import { authRouter } from "./routes/auth.routes.js";
 import { interviewRouter } from "./routes/interview.routes.js";
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Backend is running successfully 🚀",
+  });
+});
+
+
 // Route Use
 app.use("/api/auth", authRouter);
 app.use("/api/interview", interviewRouter);
