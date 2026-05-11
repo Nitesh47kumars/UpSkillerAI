@@ -3,7 +3,8 @@ import "../style/interview.scss";
 import { useInterview } from "../hooks/useInterview";
 import { useParams } from "react-router";
 import { SiGooglegemini } from "react-icons/si";
-import Loading from "../Components/Loading"
+import Loading from "../Components/Loading";
+import { useAuth } from "../../auth/hooks/useAuth";
 
 const IconCode = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -153,7 +154,8 @@ const NAV_ITEMS = [
 export default function Interview() {
   const [activeSection, setActiveSection] = useState("technical");
   const { report, getReportById, loading, getResumePdf } = useInterview();
-  const {interviewId} = useParams();
+  const { interviewId } = useParams();
+  const { handlelogout } = useAuth();
 
   useEffect(() => {
     if (interviewId) {
@@ -161,8 +163,13 @@ export default function Interview() {
     }
   }, [interviewId]);
 
+  const onHandleLogout = async () => {
+    await handlelogout();
+    navigate("/login");
+  };
+
   if (loading || !report) {
-    return <Loading/>
+    return <Loading />;
   }
 
   return (
@@ -182,7 +189,16 @@ export default function Interview() {
             </div>
           ))}
         </div>
-        <button style={{display:"flex", alignItems:"center", justifyContent:"center", gap:"0.5rem"}} onClick={()=>getResumePdf({interviewReportId :interviewId})} className="button primary-button">
+        <button
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.5rem",
+          }}
+          onClick={() => getResumePdf({ interviewReportId: interviewId })}
+          className="button primary-button"
+        >
           <SiGooglegemini />
           Download AI Resume
         </button>
@@ -229,8 +245,13 @@ export default function Interview() {
 
       {/* Right Panel */}
       <aside className="right-panel">
-        <ScoreRing score={report.matchScore} />
-        <SkillGaps gaps={report.skillGap} />
+        <div>
+          <ScoreRing score={report.matchScore} />
+          <SkillGaps gaps={report.skillGap} />
+        </div>
+        <button className="logout-button" onClick={onHandleLogout}>
+          Logout
+        </button>
       </aside>
     </div>
   );

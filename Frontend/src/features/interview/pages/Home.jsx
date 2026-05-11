@@ -8,7 +8,6 @@ import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
 import Loading from "../Components/Loading";
 import { useAuth } from "../../auth/hooks/useAuth";
-import { logout } from "../../auth/services/auth.api";
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
@@ -44,18 +43,22 @@ const Home = () => {
     <main className="home">
       <div className="container">
         {/* HEADER */}
-        <div className="header">
-          <h1>
-            Create Your Custom <span>Interview Plan</span>
-          </h1>
-          <p>
-            Let our AI analyze your job requirements and profile to build a
-            winning strategy.
-          </p>
+        <div className="top-header">
+          <div className="header">
+            <h1>
+              Create Your Custom <span>Interview Plan</span>
+            </h1>
+
+            <p>
+              Let our AI analyze your job requirements and profile to build a
+              winning strategy.
+            </p>
+          </div>
+
+          <button className="logout-button" onClick={onHandleLogout}>
+            Logout
+          </button>
         </div>
-        <button className="button logout-button" onClick={onHandleLogout}>
-          Logout
-        </button>
 
         {/* MAIN CARD */}
         <div className="card">

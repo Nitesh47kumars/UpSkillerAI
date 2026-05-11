@@ -17,3 +17,21 @@
         transform: scale(0.98);
     }
 }
+
+.logout-button {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+    min-width: 10rem;
+  
+    &:hover {
+      background: #d9363e;
+    }
+  }

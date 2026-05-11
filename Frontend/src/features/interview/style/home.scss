@@ -19,24 +19,33 @@ $accent: #ec4899;
     max-width: 1100px;
   }
 
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
   .header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-
+    text-align: left;
+    margin-bottom: 0;
+  
     h1 {
-      font-size: clamp(1rem, 4vh, 2rem );
+      font-size: clamp(1rem, 4vh, 2rem);
       font-weight: 700;
       letter-spacing: -0.5px;
-
+  
       span {
         color: $accent;
       }
     }
-
+  
     p {
       color: $muted;
       margin-top: 0.6rem;
       font-size: 0.95rem;
+      max-width: 700px;
     }
   }
 
