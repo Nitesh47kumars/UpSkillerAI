@@ -9,10 +9,12 @@ app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5173", process.env.VITE_FRONTEND_URL],
+    origin: process.env.VITE_FRONTEND_URL,
     credentials: true,
   })
 );
+
+console.log(process.env.VITE_FRONTEND_URL);
 
 // Routes Require
 import { authRouter } from "./routes/auth.routes.js";

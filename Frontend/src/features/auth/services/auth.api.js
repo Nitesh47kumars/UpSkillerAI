@@ -5,8 +5,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-console.log(import.meta.env.VITE_BACKEND_URL)
-
 export async function register(userName, email, password) {
   try {
     const response = await api.post("/api/auth/register", {
