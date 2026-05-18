@@ -9,9 +9,7 @@ app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173"
-    ],
+    origin: ["http://localhost:5173", process.env.VITE_FRONTEND_URL],
     credentials: true,
   })
 );
@@ -26,7 +24,6 @@ app.get("/", (req, res) => {
     message: "Backend is running successfully 🚀",
   });
 });
-
 
 // Route Use
 app.use("/api/auth", authRouter);
